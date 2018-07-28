@@ -152,10 +152,9 @@
                                         <h2 class="pricing-title">Affordable Pricing</h2>
                                         <ul id="filter-list" class="clearfix">
                                             <li class="filter" data-filter="all">All</li>
-                                            <li class="filter" data-filter=".breakfast">Breakfast</li>
-                                            <li class="filter" data-filter=".special">Special</li>
-                                            <li class="filter" data-filter=".desert">Desert</li>
-                                            <li class="filter" data-filter=".dinner">Dinner</li>
+                                            @foreach($categories as $category)
+                                                <li class="filter" data-filter="#{{ $category->slug }}">{{ $category->name }} <span class="badge">{{ $category->items->count() }}</span></li>
+                                            @endforeach
                                         </ul><!-- @end #filter-list -->
                                     </div>
                                 </div>
@@ -168,132 +167,21 @@
                     <div class="row">  
                         <div class="col-md-10 col-md-offset-1">
                             <ul id="menu-pricing" class="menu-price">
-                                <li class="item dinner">
-
-                                    <a href="#">
-                                        <img src="{{ asset('front/images/food1.jpg') }}" class="img-responsive" alt="Food" >
-                                        <div class="menu-desc text-center">
+                                @foreach($items as $item)
+                                    <li class="item" id="{{ $item->category->slug }}">
+                                        <a href="#">
+                                            <img src="{{ asset('uploads/item/'.$item->image) }}" class="img-responsive" alt="Food" >
+                                            <div class="menu-desc text-center">
                                             <span>
-                                                <h3>Tomato Curry</h3>
+                                                <h3>{{ $item->name }}</h3>
                                                 Natalie &amp; Justin Cleaning by Justin Younger
                                             </span>
-                                        </div>
-                                    </a>
-                                        
-                                    <h2 class="white">$20</h2>
-                                </li>
-                                <li class="item breakfast">
+                                            </div>
+                                        </a>
 
-                                    <a href="#">
-                                        <img src="{{ asset('front/images/food2.jpg') }}" class="img-responsive" alt="Food" >
-                                        <div class="menu-desc">
-                                            <span>
-                                                <h3>Prawn Dish</h3>
-                                                Lorem ipsum dolor sit amet
-                                            </span>
-                                        </div>
-                                    </a>
-                                        
-                                    <h2 class="white">$20</h2>
-                                </li>
-                                <li class="item desert">
-
-                                    <a href="#">
-                                        <img src="{{ asset('front/images/food3.jpg') }}" class="img-responsive" alt="Food" >
-                                        <div class="menu-desc">
-                                            <span>
-                                                <h3>Salad Dish</h3>
-                                                Consectetur adipisicing elit, sed do eiusmod
-                                            </span>
-                                        </div>
-                                    </a>
-                                        
-                                    <h2 class="white">$18</h2>
-                                </li>
-                                <li class="item breakfast special">
-
-                                    <a href="#">
-                                        <img src="{{ asset('front/images/food4.jpg') }}" class="img-responsive" alt="Food" >
-                                        <div class="menu-desc">
-                                            <span>
-                                                <h3>Prawn Dish</h3>
-                                                Tempor incididunt ut labore et dolore
-                                            </span>
-                                        </div>
-                                    </a>
-                                        
-                                    <h2 class="white">$15</h2>
-                                </li>
-                                <li class="item breakfast">
-
-                                    <a href="#">
-                                        <img src="{{ asset('front/images/food5.jpg') }}" class="img-responsive" alt="Food" >
-                                        <div class="menu-desc">
-                                            <span>
-                                                <h3>Vegetable Dish</h3>
-                                                Magna aliqua. Ut enim ad minim veniam
-                                            </span>
-                                        </div>
-                                    </a>
-                                        
-                                    <h2 class="white">$20</h2>
-                                </li>
-                                <li class="item dinner special">
-
-                                    <a href="#">
-                                        <img src="{{ asset('front/images/food6.jpg') }}" class="img-responsive" alt="Food" >
-                                        <div class="menu-desc">
-                                            <span>
-                                                <h3>Chicken Dish</h3>
-                                                Quis nostrud exercitation ullamco laboris
-                                            </span>
-                                        </div>
-                                    </a>
-
-                                    <h2 class="white">$22</h2>
-                                </li>
-                                <li class="item desert">
-
-                                    <a href="#">
-                                        <img src="{{ asset('front/images/food7.jpg') }}" class="img-responsive" alt="Food" >
-                                        <div class="menu-desc">
-                                            <span>
-                                                <h3>Vegetable Noodles</h3>
-                                                Nisi ut aliquip ex ea commodo
-                                            </span>
-                                        </div>
-                                    </a>
-
-                                    <h2 class="white">$32</h2>
-                                </li>
-                                <li class="item dinner">
-
-                                    <a href="#">
-                                        <img src="{{ asset('front/images/food8.jpg') }}" class="img-responsive" alt="Food" >
-                                        <div class="menu-desc">
-                                            <span>
-                                                <h3>Special Salad</h3>
-                                                Duis aute irure dolor in reprehenderit
-                                            </span>
-                                        </div>
-                                    </a>
-
-                                    <h2 class="white">$38</h2>
-                                </li>
-                                <li class="item desert special">
-
-                                    <a href="#">
-                                        <img src="{{ asset('front/images/food9.jpg') }}" class="img-responsive" alt="Food" >
-                                        <div class="menu-desc">
-                                            <span>
-                                                <h3>Ice-cream</h3>
-                                                Excepteur sint occaecat cupidatat non
-                                            </span>
-                                        </div>
-                                    </a>
-                                    
-                                    <h2 class="white">$38</h2>
-                                </li>  
+                                        <h2 class="white">{{ $item->price }} F</h2>
+                                    </li>
+                                @endforeach
                             </ul>
 
                             <!-- <div class="text-center">
@@ -310,12 +198,12 @@
 
         <!--== 8. Great Place to enjoy ==-->
         <section id="great-place-to-enjoy" class="great-place-to-enjoy">
-            <img class="img-responsive section-icon hidden-sm hidden-xs" src="images/icons/beer_black.png">
+            <img class="img-responsive section-icon hidden-sm hidden-xs" src="{{ asset('front/images/icons/beer_black.png') }}">
             <div class="wrapper">
                 <div class="container-fluid">
                     <div class="row dis-table">
                         <div class="col-xs-6 col-sm-6 dis-table-cell color-bg">
-                            <h2 class="section-title">Great Place to enjoy</h2>
+                            <h2 class="section-title">Profiter de cet superbe endroit</h2>
                         </div>
                         <div class="col-xs-6 col-sm-6 dis-table-cell section-bg">
                             
@@ -329,7 +217,7 @@
 
         <!--==  9. Our Beer  ==-->
         <section id="beer" class="beer">
-            <img class="img-responsive section-icon hidden-sm hidden-xs" src="images/icons/beer_color.png">
+            <img class="img-responsive section-icon hidden-sm hidden-xs" src="{{ asset('front/images/icons/beer_color.png') }}">
             <div class="container-fluid">
                 <div class="row dis-table">
                     <div class="hidden-xs col-sm-6 dis-table-cell section-bg">
@@ -470,200 +358,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="menu-item">
-                                        <h3 class="menu-title">Regular Bread</h3>
-                                        <p class="menu-about">Astronomy compels the soul</p>
-
-                                        <div class="menu-system">
-                                            <div class="half">
-                                                <p class="per-head">
-                                                    <span><i class="fa fa-user"></i></span>1:1
-                                                </p>
-                                            </div>
-                                            <div class="half">
-                                                <p class="price">$149.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="row">
-                                    <div class="menu-catagory">
-                                        <h2>Drinks</h2>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="menu-item">
-                                        <h3 class="menu-title">Regular Tea</h3>
-                                        <p class="menu-about">Astronomy compels the soul</p>
-
-                                        <div class="menu-system">
-                                            <div class="half">
-                                                <p class="per-head">
-                                                    <span><i class="fa fa-user"></i></span>1:1
-                                                </p>
-                                            </div>
-                                            <div class="half">
-                                                <p class="price">$20.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="menu-item">
-                                        <h3 class="menu-title">Garlic Tea</h3>
-                                        <p class="menu-about">Astronomy compels the soul</p>
-
-                                        <div class="menu-system">
-                                            <div class="half">
-                                                <p class="per-head">
-                                                    <span><i class="fa fa-user"></i></span>1:1
-                                                </p>
-                                            </div>
-                                            <div class="half">
-                                                <p class="price">$30.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="menu-item">
-                                        <h3 class="menu-title">Black Coffee</h3>
-                                        <p class="menu-about">Astronomy compels the soul</p>
-
-                                        <div class="menu-system">
-                                            <div class="half">
-                                                <p class="per-head">
-                                                    <span><i class="fa fa-user"></i></span>1:1
-                                                </p>
-                                            </div>
-                                            <div class="half">
-                                                <p class="price">$40.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="row">
-                                    <div class="menu-catagory">
-                                        <h2>Meat</h2>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="menu-item">
-                                        <h3 class="menu-title">Bacon</h3>
-                                        <p class="menu-about">Astronomy compels the soul</p>
-
-                                        <div class="menu-system">
-                                            <div class="half">
-                                                <p class="per-head">
-                                                    <span><i class="fa fa-user"></i></span>1:1
-                                                </p>
-                                            </div>
-                                            <div class="half">
-                                                <p class="price">$70.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="menu-item">
-                                        <h3 class="menu-title">Sausage</h3>
-                                        <p class="menu-about">Astronomy compels the soul</p>
-
-                                        <div class="menu-system">
-                                            <div class="half">
-                                                <p class="per-head">
-                                                    <span><i class="fa fa-user"></i></span>1:1
-                                                </p>
-                                            </div>
-                                            <div class="half">
-                                                <p class="price">$50.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="menu-item">
-                                        <h3 class="menu-title">Chicken Balls</h3>
-                                        <p class="menu-about">Astronomy compels the soul</p>
-
-                                        <div class="menu-system">
-                                            <div class="half">
-                                                <p class="per-head">
-                                                    <span><i class="fa fa-user"></i></span>1:1
-                                                </p>
-                                            </div>
-                                            <div class="half">
-                                                <p class="price">$90.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="row">
-                                    <div class="menu-catagory">
-                                        <h2>Special</h2>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="menu-item">
-                                        <h3 class="menu-title">Chicken Balls</h3>
-                                        <p class="menu-about">Astronomy compels the soul</p>
-
-                                        <div class="menu-system">
-                                            <div class="half">
-                                                <p class="per-head">
-                                                    <span><i class="fa fa-user"></i></span>1:1
-                                                </p>
-                                            </div>
-                                            <div class="half">
-                                                <p class="price">$90.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="menu-item">
-                                        <h3 class="menu-title">Bacon</h3>
-                                        <p class="menu-about">Astronomy compels the soul</p>
-
-                                        <div class="menu-system">
-                                            <div class="half">
-                                                <p class="per-head">
-                                                    <span><i class="fa fa-user"></i></span>1:1
-                                                </p>
-                                            </div>
-                                            <div class="half">
-                                                <p class="price">$70.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="menu-item">
-                                        <h3 class="menu-title">Sausage</h3>
-                                        <p class="menu-about">Astronomy compels the soul</p>
-
-                                        <div class="menu-system">
-                                            <div class="half">
-                                                <p class="per-head">
-                                                    <span><i class="fa fa-user"></i></span>1:1
-                                                </p>
-                                            </div>
-                                            <div class="half">
-                                                <p class="price">$50.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -691,37 +385,37 @@
                                 <div class="flexslider">
                                     <ul class="slides">
                                         <li>
-                                            <img src="images/menu-gallery/menu1.png" />
+                                            <img src="{{ asset('front/images/menu-gallery/menu1.png') }}" />
                                         </li>
                                         <li>
-                                            <img src="images/menu-gallery/menu2.jpg" />
+                                            <img src="{{ asset('front/images/menu-gallery/menu2.jpg') }}" />
                                         </li>
                                         <li>
-                                            <img src="images/menu-gallery/menu3.png" />
+                                            <img src="{{ asset('front/images/menu-gallery/menu3.png') }}" />
                                         </li>
                                         <li>
-                                            <img src="images/menu-gallery/menu4.jpg" />
+                                            <img src="{{ asset('front/images/menu-gallery/menu4.jpg') }}" />
                                         </li>
                                         <li>
-                                            <img src="images/menu-gallery/menu5.jpg" />
+                                            <img src="{{ asset('front/images/menu-gallery/menu5.jpg') }}" />
                                         </li>
                                         <li>
-                                            <img src="images/menu-gallery/menu6.jpg" />
+                                            <img src="{{ asset('front/images/menu-gallery/menu6.jpg') }}" />
                                         </li>
                                         <li>
-                                            <img src="images/menu-gallery/menu7.jpg" />
+                                            <img src="{{ asset('front/images/menu-gallery/menu7.jpg') }}" />
                                         </li>
                                         <li>
-                                            <img src="images/menu-gallery/menu8.jpg" />
+                                            <img src="{{ asset('front/images/menu-gallery/menu8.jpg') }}" />
                                         </li>
                                         <li>
-                                            <img src="images/menu-gallery/menu9.jpg" />
+                                            <img src="{{ asset('front/images/menu-gallery/menu9.jpg') }}" />
                                         </li>
                                         <li>
-                                            <img src="images/menu-gallery/menu10.jpg" />
+                                            <img src="{{ asset('front/images/menu-gallery/menu10.jpg') }}" />
                                         </li>
                                         <li>
-                                            <img src="images/menu-gallery/menu11.jpg" />
+                                            <img src="{{ asset('front/images/menu-gallery/menu11.jpg') }}" />
                                         </li>
                                     </ul>
                                 </div>
