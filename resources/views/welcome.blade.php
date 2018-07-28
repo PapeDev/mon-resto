@@ -182,7 +182,6 @@
                                         
                                     <h2 class="white">$20</h2>
                                 </li>
-
                                 <li class="item breakfast">
 
                                     <a href="#">

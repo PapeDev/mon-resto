@@ -41,6 +41,14 @@
                     </div>
                   </div>
 
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Prix </label>
+                      <input type="number" class="form-control" name="price">
+                    </div>
+
+                  </div>
+
                 </div>
 
                 <div class="row">
@@ -52,13 +60,7 @@
                   </div>
                 </div>
 
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">Prix </label>
-                    <input type="number" class="form-control" name="price">
-                  </div>
 
-                </div>
                 <br>
                 <br>
                 <div class="row">
