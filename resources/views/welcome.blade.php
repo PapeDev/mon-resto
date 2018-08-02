@@ -16,6 +16,8 @@
         <link rel="stylesheet" href="{{ asset('front/css/flexslider.css') }}">
         <link rel="stylesheet" href="{{ asset('front/css/pricing.css') }}">
         <link rel="stylesheet" href="{{ asset('front/css/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('front/css/bootstrap-datetimepicker.min.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
         <style>
             @foreach($sliders as $key=>$slider)
                 .owl-carousel .owl-wrapper, .owl-carousel .owl-item:nth-child({{ $key + 1 }}) .item
@@ -437,7 +439,7 @@
 
         <!--== 15. Reserve A Table! ==-->
         <section id="reserve" class="reserve">
-            <img class="img-responsive section-icon hidden-sm hidden-xs" src="images/icons/reserve_black.png">
+            <img class="img-responsive section-icon hidden-sm hidden-xs" src="{{ asset('front/images/icons/reserve_black.png') }}">
             <div class="wrapper">
                 <div class="container-fluid">
                     <div class="row dis-table">
@@ -455,17 +457,18 @@
 
 
         <section class="reservation">
-            <img class="img-responsive section-icon hidden-sm hidden-xs" src="images/icons/reserve_color.png">
+            <img class="img-responsive section-icon hidden-sm hidden-xs" src="{{ asset('front/images/icons/reserve_color.png') }}">
             <div class="wrapper">
                 <div class="container-fluid">
                     <div class=" section-content">
                         <div class="row">
                             <div class="col-md-5 col-sm-6">
-                                <form class="reservation-form" method="post" action="reserve.php">
+                                <form class="reservation-form" method="post" action="{{ route('reservation.reserv') }}">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control reserve-form empty iconified" name="name" id="name" required="required" placeholder="  &#xf007;  Name">
+                                                <input type="text" class="form-control reserve-form empty iconified" name="name" id="name" placeholder="  &#xf007;  Name">
                                             </div>
                                             <div class="form-group">
                                                 <input type="email" name="email" class="form-control reserve-form empty iconified" id="email" required="required" placeholder="  &#xf1d8;  e-mail">
@@ -477,7 +480,7 @@
                                                 <input type="tel" class="form-control reserve-form empty iconified" name="phone" id="phone" required="required" placeholder="  &#xf095;  Phone">
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control reserve-form empty iconified" name="datepicker" id="datepicker" required="required" placeholder="&#xf017;  Time">
+                                                <input type="text" class="form-control reserve-form empty iconified" name="dateandtime" id="datetimepicker" required="required" placeholder="&#xf017;  Time">
                                             </div>
                                         </div>
 
@@ -598,7 +601,6 @@
             </div>
         </section>
 
-
         <footer>
             <div class="container">
                 <div class="row">
@@ -622,7 +624,27 @@
         <script type="text/javascript" src="{{ asset('front/js/jquery.hoverdir.js') }}"></script>
         <script type="text/javascript" src="{{ asset('front/js/jQuery.scrollSpeed.js') }}"></script>
         <script src="{{ asset('front/js/script.js') }}"></script>
-        
+        <script src="{{ asset('front/js/bootstrap-datetimepicker.min.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <script>
+                    toastr.error('{{ $error }}')
+                </script>
+            @endforeach
+        @endif
+        <script>
+            $(function() {
+               $('#datetimepicker').datetimepicker({
+                   format: "dd MM yyyy - HH:11 P",
+                   showMeridian: true,
+                   autoclose: true,
+                   todayBtn: true,
+               })
+            });
+        </script>
+        {!! Toastr::message() !!}
+
 
     </body>
 </html>

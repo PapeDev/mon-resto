@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index')->name('welcome');
+Route::post('/', 'ReservationController@reserv')->name('reservation.reserv');
 
 Auth::routes();
 
@@ -21,4 +22,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'admin
     Route::resource('slider', 'SliderController');
     Route::resource('category', 'CategoryController');
     Route::resource('item', 'ItemController');
+    Route::get('reservation', 'ReservationController@index')->name('reservation.index');
 });

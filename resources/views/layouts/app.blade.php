@@ -22,6 +22,8 @@
     <!-- CSS Just for demo purpose, dont include it in your project -->
     <link href="{{ asset('back/demo/demo.css') }}" rel="stylesheet" />
 
+
+
     @stack('css')
 
 </head>
