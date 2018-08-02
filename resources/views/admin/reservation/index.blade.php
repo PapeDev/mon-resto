@@ -40,15 +40,29 @@
                                                 @if($reservation->status == true)
                                                     <span class="badge badge-info">Confirmé</span>
                                                 @else
-                                                    <span class="label label-danger">Pas encore confirmé</span>
+                                                    <span class="badge badge-danger">Pas encore confirmé</span>
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="#" class="btn btn-info btn-sm">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </a>
 
-                                                <form id="delete-form-{{ $reservation->id }}" action="#" style="display: none;" method="post">
+                                                @if($reservation->status == false)
+                                                    <form id="status-form-{{ $reservation->id }}" action="{{ route('reservation.status', $reservation->id) }}" style="display: none;" method="post">
+                                                        @csrf
+                                                    </form>
+
+                                                    <button type="button" class="btn btn-info btn-sm" onclick="if(confirm('Êtes-vous sûr de confirmer cette réservation ?')){
+                                                            event.preventDefault();
+                                                            document.getElementById('status-form-{{ $reservation->id }}').submit();
+                                                            }
+                                                            else{
+                                                            event.preventDefault();
+                                                            }
+                                                            ">
+                                                        <i class="material-icons">done</i>
+                                                    </button>
+                                                @endif
+
+                                                <form id="delete-form-{{ $reservation->id }}" action="{{ route('reservation.destroy', $reservation->id) }}" style="display: none;" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
@@ -63,6 +77,8 @@
                                                         ">
                                                     <i class="material-icons">delete</i>
                                                 </button>
+
+
                                             </td>
                                         </tr>
                                     @endforeach
