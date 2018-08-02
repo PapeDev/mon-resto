@@ -17,15 +17,15 @@
                 <div class="card-icon">
                     <i class="material-icons">content_copy</i>
                 </div>
-                <p class="card-category">Used Space</p>
-                <h3 class="card-title">49/50
-                    <small>GB</small>
+                <p class="card-category">Categorie / Produit</p>
+                <h3 class="card-title">{{ $categoryCount }} / {{ $itemCount }}
+                    <small>elts</small>
                 </h3>
                 </div>
                 <div class="card-footer">
                 <div class="stats">
                     <i class="material-icons text-danger">warning</i>
-                    <a href="#pablo">Get More Space...</a>
+                    <a href="#pablo">Total Categories et Produits</a>
                 </div>
                 </div>
             </div>
@@ -34,14 +34,14 @@
             <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
                 <div class="card-icon">
-                    <i class="material-icons">store</i>
+                    <i class="material-icons">slideshow</i>
                 </div>
-                <p class="card-category">Revenue</p>
-                <h3 class="card-title">$34,245</h3>
+                <p class="card-category">Sliders</p>
+                <h3 class="card-title">{{ $sliderCount }}</h3>
                 </div>
                 <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">date_range</i> Last 24 Hours
+                    <i class="material-icons">date_range</i> <a href="{{ route('slider.index') }}">Voir le détail</a>
                 </div>
                 </div>
             </div>
@@ -52,12 +52,12 @@
                 <div class="card-icon">
                     <i class="material-icons">info_outline</i>
                 </div>
-                <p class="card-category">Fixed Issues</p>
-                <h3 class="card-title">75</h3>
+                <p class="card-category">Reservation</p>
+                <h3 class="card-title">{{ $reservations->count() }}</h3>
                 </div>
                 <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">local_offer</i> Tracked from Github
+                    <i class="material-icons">local_offer</i> <a href="{{ route('reservation.index') }}">Réservations non confirmées</a>
                 </div>
                 </div>
             </div>
@@ -66,65 +66,14 @@
             <div class="card card-stats">
                 <div class="card-header card-header-info card-header-icon">
                 <div class="card-icon">
-                    <i class="fa fa-twitter"></i>
+                    <i class="fa fa-newspaper-o"></i>
                 </div>
-                <p class="card-category">Followers</p>
-                <h3 class="card-title">+245</h3>
-                </div>
-                <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">update</i> Just Updated
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-            <div class="card card-chart">
-                <div class="card-header card-header-success">
-                <div class="ct-chart" id="dailySalesChart"></div>
-                </div>
-                <div class="card-body">
-                <h4 class="card-title">Daily Sales</h4>
-                <p class="card-category">
-                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+                <p class="card-category">Messages</p>
+                <h3 class="card-title">{{ $contactCount }}</h3>
                 </div>
                 <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">access_time</i> updated 4 minutes ago
-                </div>
-                </div>
-            </div>
-            </div>
-            <div class="col-md-4">
-            <div class="card card-chart">
-                <div class="card-header card-header-warning">
-                <div class="ct-chart" id="websiteViewsChart"></div>
-                </div>
-                <div class="card-body">
-                <h4 class="card-title">Email Subscriptions</h4>
-                <p class="card-category">Last Campaign Performance</p>
-                </div>
-                <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">access_time</i> campaign sent 2 days ago
-                </div>
-                </div>
-            </div>
-            </div>
-            <div class="col-md-4">
-            <div class="card card-chart">
-                <div class="card-header card-header-danger">
-                <div class="ct-chart" id="completedTasksChart"></div>
-                </div>
-                <div class="card-body">
-                <h4 class="card-title">Completed Tasks</h4>
-                <p class="card-category">Last Campaign Performance</p>
-                </div>
-                <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">access_time</i> campaign sent 2 days ago
+                    <i class="material-icons">message</i> <a href="{{ route('contact.index') }}">Voir le détail</a>
                 </div>
                 </div>
             </div>

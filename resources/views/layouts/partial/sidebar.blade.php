@@ -36,12 +36,13 @@
             <p>Réservations</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./icons.html">
-            <i class="material-icons">bubble_chart</i>
-            <p>Icons</p>
+        <li class="nav-item {{ Request::is('admin/contact*') ? 'active' : ''}}">
+          <a class="nav-link" href="{{ route('contact.index')}}">
+            <i class="material-icons">message</i>
+            <p>Messages</p>
           </a>
         </li>
+
       </ul>
     </div>
   </div>

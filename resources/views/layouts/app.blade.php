@@ -22,7 +22,7 @@
     <!-- CSS Just for demo purpose, dont include it in your project -->
     <link href="{{ asset('back/demo/demo.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    
+
     @stack('css')
 
 </head>
